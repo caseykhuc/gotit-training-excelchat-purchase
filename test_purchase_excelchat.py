@@ -4,7 +4,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from driver_wrapper import DriverWrapper
-from pages.log_in import LogIn
+from pages.login import Login
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
@@ -18,10 +18,31 @@ class PurchaseExcelchat(unittest.TestCase):
         self.driver.maximize_window()
         self.driver.get(base_url)
 
+    _session_balance = {"locator": "test-session-balance-header-button", "by": By.ID}
+
+    def login(self, email, password):
+        login_page = Login(self.driver)
+
+        try: 
+            #self.driver.find_element(By.ID, "test-login-button").click()
+            login_page.click_element(login_page._login_modal_button)
+            login_page.wait_for_element(login_page._login_modal)
+            login_page.enter_email(email)
+            login_page.enter_password(password)
+            login_page.click_login_submit_button()
+            login_page.wait_for_element(login_page._login_modal, invisible=True)
+            self.assertTrue(
+                login_page.wait_for_element(
+                    self._session_balance
+                    ))
+            return True
+        except:
+            return False
+
     def test(self):
         # Login
-        login_page = LogIn(self.driver)
-        self.assertTrue(login_page.login("trang+99@gotitapp.co", "1234aA"))
+        login_result = self.login("trang+99@gotitapp.co", "1234aA")
+        self.assertTrue(login_result)
 
         """driver = self.driver
         wait = WebDriverWait(driver, 10)
