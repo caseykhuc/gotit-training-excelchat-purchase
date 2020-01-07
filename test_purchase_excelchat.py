@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from driver_wrapper import DriverWrapper
 from pages.login import Login
+from pages.pricing import Pricing
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
@@ -39,10 +40,23 @@ class PurchaseExcelchat(unittest.TestCase):
         except:
             return False
 
+    def purchase(self, default_card="1881"):
+        pricing_page = Pricing(self.driver)
+
+        try:
+            pricing_page.click_pricing_nav_link()
+            pricing_page.click_unlimited_session_option()
+            return True
+        except:
+            return False
+
     def test(self):
         # Login
         login_result = self.login("trang+99@gotitapp.co", "1234aA")
         self.assertTrue(login_result)
+
+        purchase_result = self.purchase()
+        self.assertTrue(purchase_result)
 
         """driver = self.driver
         wait = WebDriverWait(driver, 10)
@@ -76,7 +90,7 @@ class PurchaseExcelchat(unittest.TestCase):
             payment_modal.find_element(By.CSS_SELECTOR, 'div.modal-footer button.gi-Button').click()
             # assert something"""
 
-        time.sleep(5)
+        time.sleep(2)
 
 
 if __name__ == '__main__':

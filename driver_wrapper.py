@@ -8,7 +8,7 @@ class DriverWrapper:
     def __init__(self, driver):
         self.driver = driver
 
-    def wait_for_element(self, locator, timeout=10, pollFrequency=0.5, invisible=False):
+    def wait_for_element(self, locator, timeout=10, pollFrequency=0.5, invisible=False, condition=EC.visibility_of_element_located):
         element = None
         try:
             print("Waiting for maximum :: " + str(timeout) +
@@ -18,9 +18,9 @@ class DriverWrapper:
                                                      ElementNotVisibleException,
                                                      ElementNotSelectableException])
             if invisible:
-                element = wait.until_not(EC.visibility_of_element_located((locator['by'], locator['locator'])))    
+                element = wait.until_not(condition((locator['by'], locator['locator'])))    
             else:
-                element = wait.until(EC.visibility_of_element_located((locator['by'], locator['locator'])))
+                element = wait.until(condition((locator['by'], locator['locator'])))
             print("Element appeared on the web page")
         except:
             print("Element not appeared on the web page")
@@ -29,6 +29,7 @@ class DriverWrapper:
     
     def click_element(self, locator):
         try:
+            self.wait_for_element(locator, condition=EC.element_to_be_clickable)
             element = self.get_element(locator)
             element.click()
         except:
