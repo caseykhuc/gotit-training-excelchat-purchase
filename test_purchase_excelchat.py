@@ -19,7 +19,14 @@ class PurchaseExcelchat(unittest.TestCase):
         self.driver.maximize_window()
         self.driver.get(base_url)
 
-    _session_balance = {"locator": "test-session-balance-header-button", "by": By.ID}
+    _session_balance = {
+        "locator": "test-session-balance-header-button", 
+        "by": By.ID
+    }
+    _unlimited_session_balance = {
+        "locator": '//*[@id="test-session-balance-header-button"]/strong[text()="unlimited"]',
+        "by": By.XPATH
+    }
 
     def login(self, email, password):
         login_page = Login(self.driver)
@@ -33,9 +40,8 @@ class PurchaseExcelchat(unittest.TestCase):
             login_page.click_login_submit_button()
             login_page.wait_for_element(login_page._login_modal, invisible=True)
             self.assertTrue(
-                login_page.wait_for_element(
-                    self._session_balance
-                    ))
+                login_page.wait_for_element(self._session_balance)
+            )
             return True
         except:
             return False
@@ -46,8 +52,15 @@ class PurchaseExcelchat(unittest.TestCase):
         try:
             pricing_page.click_pricing_nav_link()
             pricing_page.click_unlimited_session_option()
+            pricing_page.click_default_card(default_card)
+            pricing_page.click_purchase_button()
+            self.assertIsNotNone(
+                pricing_page.wait_for_element(
+                    self._unlimited_session_balance, timeout=20)
+            )
             return True
-        except:
+        except Exception as e:
+            print(e)
             return False
 
     def test(self):

@@ -8,16 +8,26 @@ class Pricing(DriverWrapper):
         self.driver = driver
 
     # Locators
-    _pricing_nav_link = {"locator": "pricing-navlink-landing", "by": By.ID}
-    _session_options = {"locator": "div.gi-coverPricing-Inner div.gi-pricingItem", "by": By.CLASS_NAME}
+    _pricing_nav_link = {
+        "locator": "pricing-navlink-landing", 
+        "by": By.ID
+    }
+    _session_options = {
+        "locator": "div.gi-coverPricing-Inner div.gi-pricingItem", 
+        "by": By.CLASS_NAME
+    }
     _unlimited_session_option = {
         "locator": '//div[text()="Unlimited Sessions"]/parent::div/div[@class="gi-pricingItem-Button"]',
         "by": By.XPATH
     }
-
-    _email_field = {"locator": "input[name='email']", "by": By.CSS_SELECTOR}
-    _password_field = {"locator": "input[name='password']", "by": By.CSS_SELECTOR}
-    _login_submit_button = {"locator": "button#login-button", "by": By.CSS_SELECTOR}
+    _default_card = {
+        "locator": '//div[@data-braintree-id="methods"]//div[contains(text(), "{default_card}")]',
+        "by": By.XPATH
+    }
+    _purchase_button = {
+        "locator": "div#modal-payment-subscription-engine div.modal-footer button.gi-Button", 
+        "by": By.CSS_SELECTOR
+    }
 
     def click_pricing_nav_link(self):
         self.click_element(
@@ -28,7 +38,17 @@ class Pricing(DriverWrapper):
         self.click_element(
             self._unlimited_session_option
         )
+    
+    def click_default_card(self, default_card):
+        self._default_card["locator"] = self._default_card["locator"].format(default_card=default_card)
+        self.click_element(
+            self._default_card
+        )
 
+    def click_purchase_button(self):
+        self.click_element(
+            self._purchase_button
+        )
    
         """ # Navigate to Pricing page
         driver.find_element(By.ID, 'pricing-navlink-landing').click()

@@ -11,8 +11,6 @@ class DriverWrapper:
     def wait_for_element(self, locator, timeout=10, pollFrequency=0.5, invisible=False, condition=EC.visibility_of_element_located):
         element = None
         try:
-            print("Waiting for maximum :: " + str(timeout) +
-                  " :: seconds for element to be clickable")
             wait = WebDriverWait(self.driver, timeout, poll_frequency=pollFrequency,
                                  ignored_exceptions=[NoSuchElementException,
                                                      ElementNotVisibleException,
@@ -21,9 +19,8 @@ class DriverWrapper:
                 element = wait.until_not(condition((locator['by'], locator['locator'])))    
             else:
                 element = wait.until(condition((locator['by'], locator['locator'])))
-            print("Element appeared on the web page")
-        except:
-            print("Element not appeared on the web page")
+        except Exception as e:
+            print(e)
             print_stack()
         return element
     
