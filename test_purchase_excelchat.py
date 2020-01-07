@@ -14,36 +14,29 @@ class PurchaseExcelchat(unittest.TestCase):
     def setUp(self):
         base_url = "https://www.got-it.tech/solutions/excel-chat"
         self.driver = webdriver.Chrome()
-           
+
         # Launch
         self.driver.maximize_window()
         self.driver.get(base_url)
 
-    _session_balance = {
-        "locator": "test-session-balance-header-button", 
-        "by": By.ID
-    }
+    _session_balance = {"locator": "test-session-balance-header-button", "by": By.ID}
     _unlimited_session_balance = {
         "locator": '//*[@id="test-session-balance-header-button"]/strong[text()="unlimited"]',
-        "by": By.XPATH
+        "by": By.XPATH,
     }
 
     def login(self, email, password):
         login_page = Login(self.driver)
 
-        try: 
-            #self.driver.find_element(By.ID, "test-login-button").click()
+        try:
+            # self.driver.find_element(By.ID, "test-login-button").click()
             login_page.click_element(login_page._login_modal_button)
-            self.assertIsNotNone(
-                login_page.wait_for_element(login_page._login_modal)
-            )
+            self.assertIsNotNone(login_page.wait_for_element(login_page._login_modal))
             login_page.enter_email(email)
             login_page.enter_password(password)
             login_page.click_login_submit_button()
             login_page.wait_for_element(login_page._login_modal, invisible=True)
-            self.assertTrue(
-                login_page.wait_for_element(self._session_balance)
-            )
+            self.assertTrue(login_page.wait_for_element(self._session_balance))
             return True
         except:
             return False
@@ -53,14 +46,13 @@ class PurchaseExcelchat(unittest.TestCase):
 
         try:
             pricing_page.click_pricing_nav_link()
-            self.assertIsNotNone(
-                pricing_page.click_unlimited_session_option()
-            )
+            self.assertIsNotNone(pricing_page.click_unlimited_session_option())
             if not pricing_page.click_default_card(default_card) is None:
                 pricing_page.click_purchase_button()
                 self.assertIsNotNone(
                     pricing_page.wait_for_element(
-                        self._unlimited_session_balance, timeout=20)
+                        self._unlimited_session_balance, timeout=20
+                    )
                 )
             else:
                 pass
@@ -80,5 +72,5 @@ class PurchaseExcelchat(unittest.TestCase):
         time.sleep(2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
