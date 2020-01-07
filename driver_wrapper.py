@@ -31,6 +31,7 @@ class DriverWrapper:
             element.click()
         except:
             print_stack()
+        return element
 
     def send_keys(self, data, locator):
         try:
@@ -38,6 +39,7 @@ class DriverWrapper:
             element.send_keys(data)
         except:
             print_stack()
+        return element
 
     def get_element(self, locator):
         element = None

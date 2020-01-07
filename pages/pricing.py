@@ -30,23 +30,23 @@ class Pricing(DriverWrapper):
     }
 
     def click_pricing_nav_link(self):
-        self.click_element(
+        return self.click_element(
             self._pricing_nav_link
         )
 
     def click_unlimited_session_option(self):
-        self.click_element(
+        return self.click_element(
             self._unlimited_session_option
         )
     
     def click_default_card(self, default_card):
         self._default_card["locator"] = self._default_card["locator"].format(default_card=default_card)
-        self.click_element(
+        return self.click_element(
             self._default_card
         )
 
     def click_purchase_button(self):
-        self.click_element(
+        return self.click_element(
             self._purchase_button
         )
    
