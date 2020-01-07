@@ -32,6 +32,10 @@ class Home:
     }
     _password_next_button = {"locator": "passwordNext", "by": By.ID}
     _admin_menu = {"locator": "hi-menu", "by": By.CLASS_NAME}
+    _confirm_terminate_button = {
+        "locator": "div.modal.fade.in button.btn.btn-primary",
+        "by": By.CSS_SELECTOR,
+    }
 
     def click_sign_in_admin(self, email, password):
         sign_in = self.driver.click_element(self._sign_in_admin)
@@ -45,3 +49,4 @@ class Home:
 
     def click_terminate_subscription_button(self):
         self.driver.click_element(self._terminate_subscription_button)
+        self.driver.click_element(self._confirm_terminate_button)
