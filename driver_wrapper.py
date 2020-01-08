@@ -54,8 +54,10 @@ class DriverWrapper:
     def contain_text_element(self, text, locator):
         return text in self.get_element(locator).text
 
-    def click_element(self, locator):
-        element = self.wait_for_element(locator, condition=EC.element_to_be_clickable)
+    def click_element(self, locator, timeout=_default_timeout):
+        element = self.wait_for_element(
+            locator, condition=EC.element_to_be_clickable, timeout=timeout
+        )
         element.click()
         return element
 

@@ -17,12 +17,16 @@ class Pricing:
         "locator": "div#modal-payment-subscription-engine div.modal-footer button.gi-Button",
         "by": By.CSS_SELECTOR,
     }
+    _default_card_timeout = 20
+    _finishing_timeout = 60
 
     def click_default_card(self, default_card):
         self._default_card["locator"] = Pricing._default_card["locator"].format(
             default_card=default_card
         )
-        return self.driver.click_element(Pricing._default_card)
+        return self.driver.click_element(
+            Pricing._default_card, timeout=Pricing._default_card_timeout
+        )
 
     def click_purchase_button(self):
         return self.driver.click_element(Pricing._purchase_button)
@@ -36,5 +40,5 @@ class Pricing:
 
     def wait_for_finishing(self):
         self.driver.wait_for_element(
-            Pricing._purchase_modal, invisible=True, timeout=30
+            Pricing._purchase_modal, invisible=True, timeout=Pricing._finishing_timeout
         )
