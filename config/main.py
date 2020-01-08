@@ -9,12 +9,10 @@ class Url(enum.Enum):
 
 
 class AskerAccount(enum.Enum):
-    EMAIL = "trang+01@gotitapp.co"
+    EMAIL = "trang+02@gotitapp.co"
     PASSWORD = "1234aA"
+    DEFAULT_CARD = "1881"
 
 
 class AdminAccount(enum.Enum):
-    """ EMAIL = "trang@gotitapp.co"
-    PASSWORD = "xoxoFire" """
-
     ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImJjMzMwZjkxIiwiaWF0IjoxNTc4NDU1MTA1LCJzdWIiOjEwMCwiZXhwIjoxNjA5OTkxMTA1LCJhdWQiOiJhZG1pbiJ9.U-mgnyM4dCpK0ga4J1lWstXdQkygnw8Hxp_lmVJhgFk"

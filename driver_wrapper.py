@@ -12,7 +12,7 @@ class DriverWrapper:
     def wait_for_element(
         self,
         locator,
-        timeout=10,
+        timeout=15,
         pollFrequency=0.5,
         invisible=False,
         condition=EC.visibility_of_element_located,

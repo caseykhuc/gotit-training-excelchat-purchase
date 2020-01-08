@@ -8,14 +8,9 @@ class Login:
         self.driver = DriverWrapper(driver)
 
     # Locators
-    _login_modal = {"locator": "modal-login", "by": By.ID}
-    _login_modal_button = {"locator": "test-login-button", "by": By.ID}
     _email_field = {"locator": "input[name='email']", "by": By.CSS_SELECTOR}
     _password_field = {"locator": "input[name='password']", "by": By.CSS_SELECTOR}
     _login_submit_button = {"locator": "button#login-button", "by": By.CSS_SELECTOR}
-
-    def click_login_modal_button(self):
-        self.driver.click_element(self._login_modal_button)
 
     def enter_email(self, email):
         self.driver.send_keys(email, self._email_field)
@@ -27,3 +22,8 @@ class Login:
 
     def click_login_submit_button(self):
         self.driver.click_element(self._login_submit_button)
+
+    def login(self, email, password):
+        self.enter_email(email)
+        self.enter_password(password)
+        self.click_login_submit_button()
