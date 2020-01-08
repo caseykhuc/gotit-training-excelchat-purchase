@@ -4,7 +4,7 @@ import enum
 class Url(enum.Enum):
     ADMIN = "http://admin.got-it.io/"
     GET_SUBSCRIPTION = "https://api.got-it.io/admin/askers/16413/subscriptions"
-    TERMINATE = "https://api.got-it.io/admin/askers/16413/subscriptions/%s"
+    TERMINATE = "https://api.got-it.io/admin/askers/16413/subscriptions/{}"
     ASKER_URL = "http://www.got-it.io/solutions/excel-chat"
 
 
