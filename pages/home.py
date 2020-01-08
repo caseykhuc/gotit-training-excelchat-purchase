@@ -37,7 +37,7 @@ class Home:
         return True
 
     def is_session_balance_unlimited(self):
-        self.driver.wait_for_element(self._purchase_modal, invisible=True, timeout=20)
+        self.driver.wait_for_element(self._purchase_modal, invisible=True, timeout=30)
         return "unlimited" in self.driver.wait_for_element(self._session_balance).text
 
     def click_pricing_nav_link(self):
