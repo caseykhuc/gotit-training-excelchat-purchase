@@ -1,5 +1,6 @@
 from driver_wrapper import DriverWrapper
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 import unittest
 
 
@@ -22,14 +23,10 @@ class Home:
         "locator": '//div[text()="Unlimited Sessions"]/parent::div/div[@class="gi-pricingItem-Button"]',
         "by": By.XPATH,
     }
+    _purchase_modal = {"locator": "modal-payment-subscription-engine", "by": By.ID}
 
     # Session Balance
-
     _session_balance = {"locator": "test-session-balance-header-button", "by": By.ID}
-    _unlimited_session_balance = {
-        "locator": '//*[@id="test-session-balance-header-button"]/strong[text()="unlimited"]',
-        "by": By.XPATH,
-    }
 
     def click_login_modal_button(self):
         self.driver.click_element(self._login_modal_button)
@@ -39,10 +36,17 @@ class Home:
         self.driver.wait_for_element(self._session_balance)
         return True
 
+    def is_session_balance_unlimited(self):
+        self.driver.wait_for_element(self._purchase_modal, invisible=True, timeout=20)
+        return "unlimited" in self.driver.wait_for_element(self._session_balance).text
+
     def click_pricing_nav_link(self):
         return self.driver.click_element(self._pricing_nav_link)
 
     def click_unlimited_session_option(self):
         self.driver.click_element(self._pricing_nav_link)
-        return self.driver.click_element(self._unlimited_session_option)
+        self.driver.click_element(self._unlimited_session_option)
+        assert self.driver.wait_for_element(
+            self._purchase_modal
+        ), "Purchase modal is visible"
 
