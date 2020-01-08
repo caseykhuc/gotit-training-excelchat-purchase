@@ -8,6 +8,7 @@ class Pricing:
         self.driver = DriverWrapper(driver)
 
     # Locators
+    _purchase_modal = {"locator": "modal-payment-subscription-engine", "by": By.ID}
     _default_card = {
         "locator": '//div[@data-braintree-id="methods"]//div[contains(text(), "{default_card}")]',
         "by": By.XPATH,
@@ -29,3 +30,9 @@ class Pricing:
     def purchase(self, default_card):
         self.click_default_card(default_card)
         self.click_purchase_button()
+
+    def is_purchase_modal_present(self):
+        return self.driver.is_present_element(self._purchase_modal)
+
+    def wait_for_finishing(self):
+        self.driver.wait_for_element(self._purchase_modal, invisible=True, timeout=30)

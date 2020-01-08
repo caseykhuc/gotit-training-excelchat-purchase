@@ -33,6 +33,21 @@ class DriverWrapper:
             element = wait.until(condition((locator["by"], locator["locator"])))
         return element
 
+    def is_present_element(
+        self,
+        locator,
+        timeout=15,
+        pollFrequency=0.5,
+        invisible=False,
+        condition=EC.visibility_of_element_located,
+    ):
+        try:
+            self.wait_for_element(locator, timeout, pollFrequency, invisible, condition)
+            return True
+        except:
+            pass
+        return False
+
     def click_element(self, locator):
         element = self.wait_for_element(locator, condition=EC.element_to_be_clickable)
         element.click()

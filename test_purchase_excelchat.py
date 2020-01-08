@@ -22,10 +22,15 @@ class PurchaseExcelchat(unittest.TestCase):
         self.driver.get(str(Url.ASKER_URL.value))
 
     def login(self, email, password):
-        Login(self.driver).login(email, password)
+        login_page = Login(self.driver)
+        assert login_page.is_login_modal_present(), "Login modal is visible"
+        login_page.login(email, password)
 
     def purchase(self, default_card):
-        Pricing(self.driver).purchase(default_card)
+        purchase_page = Pricing(self.driver)
+        assert purchase_page.is_purchase_modal_present(), "Purchase modal is visible"
+        purchase_page.purchase(default_card)
+        purchase_page.wait_for_finishing()
 
     def test_purchase_successful(self):
         home_page = Home(self.driver)
@@ -35,9 +40,10 @@ class PurchaseExcelchat(unittest.TestCase):
 
         # Login
         self.login(AskerAccount.EMAIL.value, AskerAccount.PASSWORD.value)
-        assert home_page.is_session_balance_found(), "Session balanced is visible"
+        assert home_page.is_session_balance_present(), "Session balanced is visible"
 
         # Invoke Purchase Modal
+        home_page.click_pricing_nav_link()
         home_page.click_unlimited_session_option()
 
         # Purchase

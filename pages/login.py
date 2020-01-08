@@ -8,6 +8,7 @@ class Login:
         self.driver = DriverWrapper(driver)
 
     # Locators
+    _login_modal = {"locator": "modal-login", "by": By.ID}
     _email_field = {"locator": "input[name='email']", "by": By.CSS_SELECTOR}
     _password_field = {"locator": "input[name='password']", "by": By.CSS_SELECTOR}
     _login_submit_button = {"locator": "button#login-button", "by": By.CSS_SELECTOR}
@@ -27,3 +28,6 @@ class Login:
         self.enter_email(email)
         self.enter_password(password)
         self.click_login_submit_button()
+
+    def is_login_modal_present(self):
+        return self.driver.is_present_element(self._login_modal)

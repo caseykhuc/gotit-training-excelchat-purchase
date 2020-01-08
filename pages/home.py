@@ -11,7 +11,6 @@ class Home:
     # Locators
     # Login
     _login_modal_button = {"locator": "test-login-button", "by": By.ID}
-    _login_modal = {"locator": "modal-login", "by": By.ID}
 
     # Pricing
     _pricing_nav_link = {"locator": "pricing-navlink-landing", "by": By.ID}
@@ -23,30 +22,21 @@ class Home:
         "locator": '//div[text()="Unlimited Sessions"]/parent::div/div[@class="gi-pricingItem-Button"]',
         "by": By.XPATH,
     }
-    _purchase_modal = {"locator": "modal-payment-subscription-engine", "by": By.ID}
 
     # Session Balance
     _session_balance = {"locator": "test-session-balance-header-button", "by": By.ID}
 
     def click_login_modal_button(self):
         self.driver.click_element(self._login_modal_button)
-        assert self.driver.wait_for_element(self._login_modal), "Login modal is visible"
 
-    def is_session_balance_found(self):
-        self.driver.wait_for_element(self._session_balance)
-        return True
+    def is_session_balance_present(self):
+        return self.driver.is_present_element(self._session_balance)
 
     def is_session_balance_unlimited(self):
-        self.driver.wait_for_element(self._purchase_modal, invisible=True, timeout=30)
         return "unlimited" in self.driver.wait_for_element(self._session_balance).text
 
     def click_pricing_nav_link(self):
         return self.driver.click_element(self._pricing_nav_link)
 
     def click_unlimited_session_option(self):
-        self.driver.click_element(self._pricing_nav_link)
         self.driver.click_element(self._unlimited_session_option)
-        assert self.driver.wait_for_element(
-            self._purchase_modal
-        ), "Purchase modal is visible"
-
