@@ -11,7 +11,7 @@ from config.main import Url, AskerAccount
 
 class PurchaseExcelchat(unittest.TestCase):
     def setUp(self):
-        # Clean up
+        # Set up state
         CleanUp().terminate_subscription()
 
         # Init
@@ -38,7 +38,6 @@ class PurchaseExcelchat(unittest.TestCase):
         assert home_page.is_session_balance_found(), "Session balanced is visible"
 
         # Invoke Purchase Modal
-        home_page.click_pricing_nav_link()
         home_page.click_unlimited_session_option()
 
         # Purchase

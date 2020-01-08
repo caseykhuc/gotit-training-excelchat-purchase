@@ -43,5 +43,6 @@ class Home:
         return self.driver.click_element(self._pricing_nav_link)
 
     def click_unlimited_session_option(self):
+        self.driver.click_element(self._pricing_nav_link)
         return self.driver.click_element(self._unlimited_session_option)
 

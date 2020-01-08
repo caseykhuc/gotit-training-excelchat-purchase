@@ -34,26 +34,15 @@ class DriverWrapper:
         return element
 
     def click_element(self, locator):
-        self.wait_for_element(locator, condition=EC.element_to_be_clickable)
-        element = self.get_element(locator)
+        element = self.wait_for_element(locator, condition=EC.element_to_be_clickable)
         element.click()
         return element
 
     def send_keys(self, data, locator):
-        self.wait_for_element(locator)
-        element = self.get_element(locator)
+        element = self.wait_for_element(locator)
         element.send_keys(data)
         return element
 
     def get_element(self, locator):
         element = self.driver.find_element(locator["by"], locator["locator"])
         return element
-
-    def get_window_handles(self):
-        return self.driver.window_handles
-
-    def get_current_window_handle(self):
-        return self.driver.current_window_handle
-
-    def switch_tab(self, tab=0):
-        return self.driver.switch_to.window(self.get_window_handles()[tab])
