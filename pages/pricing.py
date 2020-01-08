@@ -19,20 +19,22 @@ class Pricing:
     }
 
     def click_default_card(self, default_card):
-        self._default_card["locator"] = self._default_card["locator"].format(
+        self._default_card["locator"] = Pricing._default_card["locator"].format(
             default_card=default_card
         )
-        return self.driver.click_element(self._default_card)
+        return self.driver.click_element(Pricing._default_card)
 
     def click_purchase_button(self):
-        return self.driver.click_element(self._purchase_button)
+        return self.driver.click_element(Pricing._purchase_button)
 
     def purchase(self, default_card):
         self.click_default_card(default_card)
         self.click_purchase_button()
 
     def is_purchase_modal_present(self):
-        return self.driver.is_present_element(self._purchase_modal)
+        return self.driver.is_present_element(Pricing._purchase_modal)
 
     def wait_for_finishing(self):
-        self.driver.wait_for_element(self._purchase_modal, invisible=True, timeout=30)
+        self.driver.wait_for_element(
+            Pricing._purchase_modal, invisible=True, timeout=30
+        )

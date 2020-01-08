@@ -27,16 +27,16 @@ class Home:
     _session_balance = {"locator": "test-session-balance-header-button", "by": By.ID}
 
     def click_login_modal_button(self):
-        self.driver.click_element(self._login_modal_button)
+        self.driver.click_element(Home._login_modal_button)
 
     def is_session_balance_present(self):
-        return self.driver.is_present_element(self._session_balance)
+        return self.driver.is_present_element(Home._session_balance)
 
     def is_session_balance_unlimited(self):
-        return self.driver.contain_text_element("unlimited", self._session_balance)
+        return self.driver.contain_text_element("unlimited", Home._session_balance)
 
     def click_pricing_nav_link(self):
-        return self.driver.click_element(self._pricing_nav_link)
+        return self.driver.click_element(Home._pricing_nav_link)
 
     def click_unlimited_session_option(self):
-        self.driver.click_element(self._unlimited_session_option)
+        self.driver.click_element(Home._unlimited_session_option)

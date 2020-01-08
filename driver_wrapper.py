@@ -9,11 +9,14 @@ class DriverWrapper:
     def __init__(self, driver):
         self.driver = driver
 
+    _default_timeout = 15
+    _default_frequency = 0.5
+
     def wait_for_element(
         self,
         locator,
-        timeout=15,
-        pollFrequency=0.5,
+        timeout=_default_timeout,
+        pollFrequency=_default_frequency,
         invisible=False,
         condition=EC.visibility_of_element_located,
     ):
@@ -36,8 +39,8 @@ class DriverWrapper:
     def is_present_element(
         self,
         locator,
-        timeout=15,
-        pollFrequency=0.5,
+        timeout=_default_timeout,
+        pollFrequency=_default_frequency,
         invisible=False,
         condition=EC.visibility_of_element_located,
     ):
