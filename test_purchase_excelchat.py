@@ -7,25 +7,23 @@ from driver_wrapper import DriverWrapper
 from pages.login import Login
 from pages.pricing import Pricing
 from pages.admin import Admin
+from clean_up import CleanUp
 from selenium.webdriver.support import expected_conditions as EC
 import time
+from config.main import Url
 
 
 class PurchaseExcelchat(unittest.TestCase):
     def setUp(self):
-        admin_url = "https://admin.got-it.tech/user/students/20180"
-        asker_url = "https://www.got-it.tech/solutions/excel-chat"
+        # Clean up
+        CleanUp().terminate_subscription()
 
         # Init
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
 
-        # Launch Admin
-        """ self.driver.get(admin_url)
-        self.terminate_subscription() """
-
         # Launch Asker
-        self.driver.get(asker_url)
+        self.driver.get(str(Url.ASKER_URL.value))
 
     _session_balance = {"locator": "test-session-balance-header-button", "by": By.ID}
     _unlimited_session_balance = {
@@ -33,20 +31,10 @@ class PurchaseExcelchat(unittest.TestCase):
         "by": By.XPATH,
     }
 
-    def terminate_subscription(self):
-        admin_page = Admin(self.driver)
-        admin_page.sign_in_admin("trang@gotitapp.co", "xoxoFire")
-        self.driver.get("https://admin.got-it.tech/user/students/20180")
-        # time.sleep(10)
-        admin_page.terminate_subscription_button()
-
     def login(self, email, password):
         login_page = Login(self.driver)
 
-        # self.driver.find_element(By.ID, "test-login-button").click()
-        # login_page.click_element(login_page._login_modal_button)
         login_page.click_login_modal_button()
-        # self.assertIsNotNone(login_page.wait_for_element(login_page._login_modal))
         login_page.enter_email(email)
         login_page.enter_password(password)
         login_page.click_login_submit_button()
@@ -70,7 +58,7 @@ class PurchaseExcelchat(unittest.TestCase):
 
     def test(self):
         # Login
-        self.login("trang+99@gotitapp.co", "1234aA")
+        self.login("trang+02@gotitapp.co", "1234aA")
 
         self.purchase()
 
