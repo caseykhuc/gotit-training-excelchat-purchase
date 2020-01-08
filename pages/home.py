@@ -33,7 +33,7 @@ class Home:
         return self.driver.is_present_element(self._session_balance)
 
     def is_session_balance_unlimited(self):
-        return "unlimited" in self.driver.wait_for_element(self._session_balance).text
+        return self.driver.contain_text_element("unlimited", self._session_balance)
 
     def click_pricing_nav_link(self):
         return self.driver.click_element(self._pricing_nav_link)
