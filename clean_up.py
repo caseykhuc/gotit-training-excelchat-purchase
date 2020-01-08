@@ -1,6 +1,6 @@
 import requests
 import json
-from config.main import Url, AdminAccount
+from config.main_config import Url, AdminAccount
 
 
 class CleanUp:

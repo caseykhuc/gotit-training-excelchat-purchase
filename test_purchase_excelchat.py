@@ -6,7 +6,7 @@ from pages.pricing import Pricing
 from pages.home import Home
 from clean_up import CleanUp
 import time
-from config.main import Url, AskerAccount
+from config.main_config import Url, AskerAccount
 
 
 class PurchaseExcelchat(unittest.TestCase):
