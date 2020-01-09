@@ -2,7 +2,7 @@ import unittest
 from selenium import webdriver
 from driver_wrapper import DriverWrapper
 from pages.login import Login
-from pages.pricing import Pricing
+from pages.purchase import Purchase
 from pages.home import Home
 from clean_up import CleanUp
 import time
@@ -27,7 +27,7 @@ class PurchaseExcelchat(unittest.TestCase):
         login_page.login(email, password)
 
     def purchase(self, default_card):
-        purchase_page = Pricing(self.driver)
+        purchase_page = Purchase(self.driver)
         assert purchase_page.is_purchase_modal_present(), "Purchase modal is visible"
         purchase_page.purchase(default_card)
         purchase_page.wait_for_finishing()
