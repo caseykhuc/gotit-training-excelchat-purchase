@@ -48,7 +48,9 @@ class PurchaseExcelchat(unittest.TestCase):
 
         # Purchase
         self.purchase(AskerAccount.DEFAULT_CARD.value)
-        assert home_page.is_session_balance_unlimited(), "Session balanced is unlimited"
+        assert home_page.contains_text_session_balance(
+            "unlimited"
+        ), "Session balance is unlimited"
 
         time.sleep(2)
 

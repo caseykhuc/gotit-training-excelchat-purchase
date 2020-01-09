@@ -9,8 +9,8 @@ class Home(BasePage):
     def is_session_balance_present(self):
         return self.driver.is_present_element(Locators.SESSION_BALANCE)
 
-    def is_session_balance_unlimited(self):
-        return self.driver.contain_text_element("unlimited", Locators.SESSION_BALANCE)
+    def contains_text_session_balance(self, text):
+        return self.driver.contains_text_element(text, Locators.SESSION_BALANCE)
 
     def click_pricing_nav_link(self):
         return self.driver.click_element(Locators.PRICING_NAV_LINK)

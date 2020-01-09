@@ -51,7 +51,7 @@ class DriverWrapper:
             pass
         return False
 
-    def contain_text_element(self, text, locator):
+    def contains_text_element(self, text, locator):
         return text in self.get_element(locator).text
 
     def click_element(self, locator, timeout=_default_timeout):
