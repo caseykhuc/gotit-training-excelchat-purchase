@@ -1,5 +1,5 @@
 from pages.common.base_page import BasePage
-from locators import PurchaseModalLocators as Locators
+from utility.locators import PurchaseModalLocators as Locators
 
 
 class Purchase(BasePage):

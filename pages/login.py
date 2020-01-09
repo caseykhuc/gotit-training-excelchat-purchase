@@ -1,5 +1,5 @@
 from pages.common.base_page import BasePage
-from locators import LoginModalLocators as Locators
+from utility.locators import LoginModalLocators as Locators
 
 
 class Login(BasePage):

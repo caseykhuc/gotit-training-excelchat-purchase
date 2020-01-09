@@ -1,4 +1,3 @@
-from traceback import print_stack
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
@@ -9,7 +8,7 @@ class DriverWrapper:
     def __init__(self, driver):
         self.driver = driver
 
-    _default_timeout = 15
+    _default_timeout = 10
     _default_frequency = 0.5
 
     def wait_for_element(

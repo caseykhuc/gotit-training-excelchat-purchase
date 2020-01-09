@@ -1,4 +1,4 @@
-from driver_wrapper import DriverWrapper
+from utility.driver_wrapper import DriverWrapper
 
 
 class BasePage:
