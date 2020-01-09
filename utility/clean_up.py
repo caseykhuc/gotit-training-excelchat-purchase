@@ -1,4 +1,4 @@
-from config.main_config import Url, AdminAccount
+from config.main_config import Url
 from utility.api import ApiRequest, ApiResponse
 
 

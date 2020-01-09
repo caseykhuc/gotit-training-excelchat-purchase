@@ -2,14 +2,14 @@ from behave import *
 from pages.login import Login
 from pages.purchase import Purchase
 from pages.home import Home
-from config.main_config import Url, AskerAccount
 
 # Invoke Login Modal
 @given("a web browser is at the Asker page")
 def step_impl(context):
     context.browser.maximize_window()
     # Launch Asker
-    context.browser.get(str(Url.ASKER_URL.value))
+    asker_url = context.config.Url.ASKER_URL.value
+    context.browser.get(asker_url)
 
 
 @when("the user clicks on login button")
@@ -25,7 +25,9 @@ def step_impl(context):
 # Login
 @when("the user logins")
 def step_impl(context):
-    Login(context.browser).login(AskerAccount.EMAIL.value, AskerAccount.PASSWORD.value)
+    email = context.config.AskerAccount.EMAIL.value
+    password = context.config.AskerAccount.PASSWORD.value
+    Login(context.browser).login(email, password)
 
 
 @then("session balance info is shown")
@@ -52,7 +54,8 @@ def step_impl(context):
 # Purchase
 @when("the user purchase with the default card")
 def step_impl(context):
-    Purchase(context.browser).purchase(AskerAccount.DEFAULT_CARD.value)
+    default_card = context.config.AskerAccount.DEFAULT_CARD.value
+    Purchase(context.browser).purchase(default_card)
 
 
 @when("the user wait for purchase finishes")

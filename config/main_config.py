@@ -2,17 +2,17 @@ import enum
 
 
 class Url(enum.Enum):
-    ADMIN = "http://admin.got-it.io/"
-    GET_SUBSCRIPTION = "https://api.got-it.io/admin/askers/16413/subscriptions"
-    TERMINATE = "https://api.got-it.io/admin/askers/16413/subscriptions/{}"
-    ASKER_URL = "http://www.got-it.io/solutions/excel-chat"
+    ADMIN = "http://admin.got-it.tech/"
+    GET_SUBSCRIPTION = "https://api.got-it.tech/admin/askers/20180/subscriptions"
+    TERMINATE = "https://api.got-it.tech/admin/askers/20180/subscriptions/{}"
+    ASKER_URL = "http://www.got-it.tech/solutions/excel-chat"
 
 
 class AskerAccount(enum.Enum):
-    EMAIL = "trang+02@gotitapp.co"
+    EMAIL = "trang+99@gotitapp.co"
     PASSWORD = "1234aA"
     DEFAULT_CARD = "1881"
 
 
 class AdminAccount(enum.Enum):
-    ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImJjMzMwZjkxIiwiaWF0IjoxNTc4NDU1MTA1LCJzdWIiOjEwMCwiZXhwIjoxNjA5OTkxMTA1LCJhdWQiOiJhZG1pbiJ9.U-mgnyM4dCpK0ga4J1lWstXdQkygnw8Hxp_lmVJhgFk"
+    ACCESS_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEyMywiYXVkIjoiYWRtaW4iLCJpYXQiOjE1Nzg0MDYwOTUsImV4cCI6MTYwOTk0MjA5NSwibm9uY2UiOiI1NjkzM2JiNCJ9.QAGB0vvElT71VCYLkqxjFXLTpa4pPQvzPXd11P0-CsM"

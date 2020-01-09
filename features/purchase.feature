@@ -1,4 +1,4 @@
-@fixture.browser.firefox
+@fixture.browser.chrome
 Feature: Purchase Unlimited Sessions
 
   Scenario: Success purchase

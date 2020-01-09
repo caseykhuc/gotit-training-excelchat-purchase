@@ -1,6 +1,6 @@
 import requests
 import json
-from config.main_config import Url, AdminAccount
+from config.main_config import AdminAccount
 
 
 class ApiRequest:

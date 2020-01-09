@@ -2,6 +2,8 @@ from behave.fixture import fixture, use_fixture
 from behave.model import Scenario
 from selenium import webdriver
 from utility.clean_up import CleanUp
+import config.dev as CONFIG_DEV
+import config.staging as CONFIG_STAGING
 
 # -- FIXTURE:
 @fixture
@@ -25,6 +27,12 @@ def before_all(context):
     userdata = context.config.userdata
     continue_after_failed = userdata.getbool("runner.continue_after_failed_step", False)
     Scenario.continue_after_failed_step = continue_after_failed
+
+    APP_STATE = userdata.get("APP_STATE", "dev")
+    if APP_STATE == "dev":
+        context.config = CONFIG_DEV
+    elif APP_STATE == "staging":
+        context.config = CONFIG_STAGING
 
 
 def before_tag(context, tag):
