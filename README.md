@@ -13,4 +13,21 @@
 - Navigate to Pricing page
 - Invoke Payment modal
 - Choose Card ending with 1881 or add another Visa Card --> Submit
-- Verify the success modal visiability
+- Verify the visible session balance is unlimited
+
+## Install
+
+```git clone https://github.com/khuctrang/gotit-training-excelchat-purchase.git``` Clone project
+
+```virtualenv venv --python=python3``` Create the virtual environment for python3
+
+```source venv/bin/activate```
+
+```pip install -e .``` Install the packages required 
+
+## Running Instruction
+
+```behave``` Run the project with development config
+
+```behave -D APP_STATE=staging``` Run the project with staging config
+
