@@ -23,6 +23,12 @@ def selenium_browser_firefox(context):
 
 
 # -- ENVIRONMENT-HOOKS:
+""" 
+dev:        behave
+staging:    behave -D APP_STATE=staging
+"""
+
+
 def before_all(context):
     userdata = context.config.userdata
     continue_after_failed = userdata.getbool("runner.continue_after_failed_step", False)
@@ -44,4 +50,6 @@ def before_tag(context, tag):
 
 def after_scenario(context, scenario):
     if scenario.name == "Success purchase":
-        CleanUp().terminate_subscription()
+        Url = context.config.Url
+        AdminAccount = context.config.AdminAccount
+        CleanUp().terminate_subscription(Url, AdminAccount)
