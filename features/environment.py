@@ -10,16 +10,12 @@ import config.staging as CONFIG_STAGING
 def selenium_browser_chrome(context):
     context.browser = webdriver.Chrome()
     yield context.browser
-    # -- CLEANUP-FIXTURE PART:
-    context.browser.quit()
 
 
 @fixture
 def selenium_browser_firefox(context):
     context.browser = webdriver.Firefox()
     yield context.browser
-    # -- CLEANUP-FIXTURE PART:
-    context.browser.quit()
 
 
 # -- ENVIRONMENT-HOOKS:
@@ -41,10 +37,11 @@ def before_all(context):
         context.config = CONFIG_STAGING
 
 
-def before_tag(context, tag):
-    if tag == "fixture.browser.chrome":
+def before_scenario(context, scenario):
+    tags = scenario.feature.tags
+    if "fixture.browser.chrome" in tags:
         use_fixture(selenium_browser_chrome, context)
-    if tag == "fixture.browser.firefox":
+    if "fixture.browser.firefox" in tags:
         use_fixture(selenium_browser_firefox, context)
 
 
@@ -53,3 +50,5 @@ def after_scenario(context, scenario):
         Url = context.config.Url
         AdminAccount = context.config.AdminAccount
         CleanUp().terminate_subscription(Url, AdminAccount)
+
+    context.browser.quit()
