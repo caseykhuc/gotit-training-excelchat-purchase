@@ -41,6 +41,15 @@ class ApiRequest:
         if method == "post":
             return requests.post(url, params=params, json=payload, headers=headers,)
 
+    def get(url, admin_account):
+        return ApiRequest.request("get", url, admin_account,)
+
+    def put(url, admin_account, payload):
+        return ApiRequest.request("put", url, admin_account, payload=payload)
+
+    def post(url, admin_account, payload):
+        return ApiRequest.request("post", url, admin_account, payload=payload)
+
 
 class ApiResponse:
     def get_loaded_response(response):
