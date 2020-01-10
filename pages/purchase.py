@@ -1,5 +1,17 @@
 from pages.common.base_page import BasePage
-from utility.locators import PurchaseModalLocators as Locators
+from selenium.webdriver.common.by import By
+
+
+class Locators:
+    PURCHASE_MODAL = {"locator": "modal-payment-subscription-engine", "by": By.ID}
+    DEFAULT_CARD = {
+        "locator": '//div[@data-braintree-id="methods"]//div[contains(text(), "{default_card}")]',
+        "by": By.XPATH,
+    }
+    PURCHASE_BUTTON = {
+        "locator": "div#modal-payment-subscription-engine div.modal-footer button.gi-Button",
+        "by": By.CSS_SELECTOR,
+    }
 
 
 class Purchase(BasePage):

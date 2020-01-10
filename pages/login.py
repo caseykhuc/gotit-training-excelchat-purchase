@@ -1,5 +1,12 @@
 from pages.common.base_page import BasePage
-from utility.locators import LoginModalLocators as Locators
+from selenium.webdriver.common.by import By
+
+
+class Locators:
+    LOGIN_MODAL = {"locator": "modal-login", "by": By.ID}
+    EMAIL_FIELD = {"locator": "input[name='email']", "by": By.CSS_SELECTOR}
+    PASSWORD_FIELD = {"locator": "input[name='password']", "by": By.CSS_SELECTOR}
+    LOGIN_SUBMIT_BUTTON = {"locator": "button#login-button", "by": By.CSS_SELECTOR}
 
 
 class Login(BasePage):

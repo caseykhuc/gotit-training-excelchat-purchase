@@ -1,5 +1,24 @@
 from pages.common.base_page import BasePage
-from utility.locators import HomePageLocators as Locators
+from selenium.webdriver.common.by import By
+
+
+class Locators:
+    # Login
+    LOGIN_MODAL_BUTTON = {"locator": "test-login-button", "by": By.ID}
+
+    # Purchase
+    PRICING_NAV_LINK = {"locator": "pricing-navlink-landing", "by": By.ID}
+    SESSIONS_OPTIONS = {
+        "locator": "div.gi-coverPricing-Inner div.gi-pricingItem",
+        "by": By.CLASS_NAME,
+    }
+    UNLIMITED_SESSION_OPTION = {
+        "locator": '//div[text()="Unlimited Sessions"]/parent::div/div[@class="gi-pricingItem-Button"]',
+        "by": By.XPATH,
+    }
+
+    # Session Balance
+    SESSION_BALANCE = {"locator": "test-session-balance-header-button", "by": By.ID}
 
 
 class Home(BasePage):
