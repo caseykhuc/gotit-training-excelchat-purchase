@@ -1,4 +1,4 @@
-from pages.common.base_page import BasePage
+from pages.common.base_modal import BaseModal
 from selenium.webdriver.common.by import By
 
 
@@ -9,7 +9,7 @@ class Locators:
     LOGIN_SUBMIT_BUTTON = {"locator": "button#login-button", "by": By.CSS_SELECTOR}
 
 
-class Login(BasePage):
+class Login(BaseModal):
     def enter_email(self, email):
         self.driver.send_keys(email, Locators.EMAIL_FIELD)
 
@@ -26,5 +26,5 @@ class Login(BasePage):
         self.enter_password(password)
         self.click_login_submit_button()
 
-    def is_login_modal_present(self):
+    def is_present(self):
         return self.driver.is_present_element(Locators.LOGIN_MODAL)

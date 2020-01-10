@@ -1,4 +1,4 @@
-from pages.common.base_page import BasePage
+from pages.common.base_modal import BaseModal
 from selenium.webdriver.common.by import By
 
 
@@ -14,7 +14,7 @@ class Locators:
     }
 
 
-class Purchase(BasePage):
+class Purchase(BaseModal):
     _DEFAULT_CARD_TIMEOUT = 20
     _FINISHING_TIMEOUT = 60
 
@@ -34,7 +34,7 @@ class Purchase(BasePage):
         self.click_default_card(default_card)
         self.click_purchase_button()
 
-    def is_purchase_modal_present(self):
+    def is_present(self):
         return self.driver.is_present_element(Locators.PURCHASE_MODAL)
 
     def wait_for_finishing(self):

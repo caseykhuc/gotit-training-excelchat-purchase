@@ -19,7 +19,7 @@ def step_impl(context):
 
 @then("I should see the login modal")
 def step_impl(context):
-    assert Login(context.browser).is_login_modal_present()
+    assert Login(context.browser).is_present()
 
 
 # Login
@@ -48,7 +48,7 @@ def step_impl(context):
 
 @then("I should see the purchase modal")
 def step_impl(context):
-    assert Purchase(context.browser).is_purchase_modal_present()
+    assert Purchase(context.browser).is_present()
 
 
 # Purchase

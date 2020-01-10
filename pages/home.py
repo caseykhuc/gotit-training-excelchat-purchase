@@ -36,3 +36,6 @@ class Home(BasePage):
 
     def click_unlimited_session_option(self):
         self.driver.click_element(Locators.UNLIMITED_SESSION_OPTION)
+
+    def is_present(self):
+        pass
