@@ -15,6 +15,16 @@ class ApiRequest:
     def request(
         method, url, params=_default_params, payload=_default_payload, headers={},
     ):
+        """ Utility method to create API request
+        
+        Parameters:
+        method (str): request method (get / put / post)
+        url (str)
+        params (dict)
+        payload (dict)
+        headers (dict): Additional headers
+        
+        """
         complete_headers = ApiRequest._default_header
         complete_headers.update(headers)
 
