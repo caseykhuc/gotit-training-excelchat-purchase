@@ -11,9 +11,9 @@ Feature: As a user, I want to purchase the Unlimited subscription
     Then I should see the session balance info
 
     When I click on the pricing nav link
-    When I click on Unlimited sessions option
+    And I click on Unlimited sessions option
     Then I should see the purchase modal
 
     When I purchase with the default card
-    When I wait for the purchase to finish
+    And I wait for the purchase to finish
     Then I should see "unlimited" in session balance info
