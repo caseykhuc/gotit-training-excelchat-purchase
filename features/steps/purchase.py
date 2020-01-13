@@ -6,7 +6,6 @@ from pages.home import Home
 # Invoke Login Modal
 @given("a web browser is at the Asker page")
 def step_impl(context):
-    context.browser.maximize_window()
     # Launch Asker
     asker_url = context.config.Url.ASKER_URL.value
     context.browser.get(asker_url)

@@ -43,10 +43,11 @@ def before_scenario(context, scenario):
         use_fixture(selenium_browser_chrome, context)
     if "fixture.browser.firefox" in tags:
         use_fixture(selenium_browser_firefox, context)
+    context.browser.maximize_window()
 
 
 def after_scenario(context, scenario):
-    if scenario.name == "Success purchase":
+    if "success" in scenario.tags:
         Url = context.config.Url
         AdminAccount = context.config.AdminAccount
         CleanUp().terminate_subscription(Url, AdminAccount)
