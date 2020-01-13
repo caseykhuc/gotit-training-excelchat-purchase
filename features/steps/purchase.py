@@ -7,7 +7,7 @@ from pages.home import Home
 @given("a web browser is at the Asker page")
 def step_impl(context):
     # Launch Asker
-    asker_url = context.config.Url.ASKER_URL.value
+    asker_url = context.config.Url.ASKER_URL
     context.browser.get(asker_url)
 
 
@@ -24,8 +24,8 @@ def step_impl(context):
 # Login
 @when("I login")
 def step_impl(context):
-    email = context.config.AskerAccount.EMAIL.value
-    password = context.config.AskerAccount.PASSWORD.value
+    email = context.config.AskerAccount.EMAIL
+    password = context.config.AskerAccount.PASSWORD
     Login(context.browser).login(email, password)
 
 
@@ -53,7 +53,7 @@ def step_impl(context):
 # Purchase
 @when("I purchase with the default card")
 def step_impl(context):
-    default_card = context.config.AskerAccount.DEFAULT_CARD.value
+    default_card = context.config.AskerAccount.DEFAULT_CARD
     Purchase(context.browser).purchase(default_card)
 
 

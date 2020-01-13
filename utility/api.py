@@ -9,46 +9,38 @@ class ApiRequest:
     _default_params = {"product": "excelchat"}
     _default_payload = {}
 
-    @staticmethod
-    def with_content_type(_headers):
-        headers = _headers
-        headers["Content-Type"] = "application/json"
-        return headers
-
-    @staticmethod
-    def with_admin_account(_headers, admin_account):
-        headers = _headers
-        headers["Authorization"] = "Bearer {}".format(admin_account.ACCESS_TOKEN.value)
-        return headers
+    _content_type_header = {"Content-Type": "application/json"}
 
     @staticmethod
     def request(
-        method,
-        url,
-        admin_account,
-        params=_default_params,
-        payload=_default_payload,
-        headers=_default_header,
+        method, url, params=_default_params, payload=_default_payload, headers={},
     ):
-        headers = ApiRequest.with_admin_account(headers, admin_account)
-        if method == "get":
-            return requests.get(url, params=params, headers=headers)
+        complete_headers = ApiRequest._default_header
+        complete_headers.update(headers)
 
-        headers = ApiRequest.with_content_type(headers)
+        if method == "get":
+            return requests.get(url, params=params, headers=complete_headers)
+
         if method == "put":
-            return requests.put(url, params=params, json=payload, headers=headers)
+            return requests.put(
+                url, params=params, json=payload, headers=complete_headers
+            )
 
         if method == "post":
-            return requests.post(url, params=params, json=payload, headers=headers,)
+            return requests.post(
+                url, params=params, json=payload, headers=complete_headers,
+            )
 
-    def get(url, admin_account):
-        return ApiRequest.request("get", url, admin_account,)
+    def get(url, headers):
+        return ApiRequest.request("get", url, headers=headers,)
 
-    def put(url, admin_account, payload):
-        return ApiRequest.request("put", url, admin_account, payload=payload)
+    def put(url, headers, payload):
+        headers.update(ApiRequest._content_type_header)
+        return ApiRequest.request("put", url, payload=payload, headers=headers)
 
-    def post(url, admin_account, payload):
-        return ApiRequest.request("post", url, admin_account, payload=payload)
+    def post(url, headers, payload):
+        headers.update(ApiRequest._content_type_header)
+        return ApiRequest.request("post", url, payload=payload, headers=headers)
 
 
 class ApiResponse:
